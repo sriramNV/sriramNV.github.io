@@ -75,6 +75,20 @@
                 <h2 class="section-title">My Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
+                        <picture>
+                            <!-- Serve modern WebP images to compatible browsers -->
+                            <source
+                                srcset="./images/project-alpha-small.webp 400w, ./images/project-alpha-medium.webp 800w, ./images/project-alpha-large.webp 1200w"
+                                sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 300px"
+                                type="image/webp">
+                            <!-- Fallback to PNG for older browsers -->
+                            <source
+                                srcset="./images/project-alpha-small.png 400w, ./images/project-alpha-medium.png 800w, ./images/project-alpha-large.png 1200w"
+                                sizes="(max-width: 600px) 90vw, (max-width: 900px) 45vw, 300px"
+                                type="image/png">
+                            <!-- The default img is crucial for browsers that don't support <picture> and for accessibility -->
+                            <img src="./images/project-alpha-medium.png" alt="Screenshot of Project Alpha" class="project-image" width="800" height="450" loading="lazy">
+                        </picture>
                         <h3>Project Alpha</h3>
                         <p>A decentralized finance (DeFi) platform that allows users to stake and earn rewards. Built with React, Solidity, and ethers.js.</p>
                         <a href="#" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Project Alpha">View Project</a>
