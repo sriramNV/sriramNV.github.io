@@ -17,6 +17,8 @@ export function initAnimations() {
 
     sectionsToAnimate.forEach(section => {
         section.classList.add('section-anim');
-        animationObserver.observe(section);
+        requestAnimationFrame(() => {
+            animationObserver.observe(section);
+        });
     });
 }
