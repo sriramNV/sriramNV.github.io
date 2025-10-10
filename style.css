@@ -34,6 +34,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height); /* Offset for fixed header */
 }
 
 body {
@@ -42,6 +43,11 @@ body {
     color: var(--text-color);
     line-height: 1.7;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Prevent body scroll when mobile menu is open */
+.no-scroll {
+    overflow: hidden;
 }
 
 /* === Reusable Components === */
@@ -115,6 +121,12 @@ section {
     text-decoration: none;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
 [data-theme='dark'] .header {
     background-color: rgba(30, 30, 30, 0.8);
 }
@@ -156,9 +168,10 @@ section {
 }
 
 .hero-content h1 {
-    font-size: 3.5rem;
+    /* Fluid typography: min, preferred, max */
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     color: var(--heading-color);
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;    
 }
 
 .hero-content .subtitle {
@@ -180,15 +193,19 @@ section {
 .project-card {
     background-color: var(--surface-color);
     padding: 2rem;
+    display: flex; /* Enable flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    gap: 0.5rem; /* Add space between child elements */
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
 }
 
 .project-card h3 {
@@ -201,23 +218,43 @@ section {
     text-decoration: none;
     font-weight: 600;
     margin-top: auto; /* Pushes link to the bottom */
+    transition: color 0.3s ease;
 }
 
+.project-link::after {
+    content: ' →';
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-link::after {
+    transform: translateX(4px);
+}
 /* === Tech Stack Section === */
 .tech-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    list-style: none; /* Remove bullet points */
     gap: 1rem;
 }
 
-.tech-list span {
+.tech-list a {
+    display: block; /* Make the whole area clickable */
     background-color: var(--surface-color);
     border: 1px solid var(--border-color);
+    color: var(--text-color);
+    text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.tech-list a:hover {
+    background-color: var(--background-color);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 /* === Contact Section === */
@@ -307,11 +344,10 @@ section {
 
 /* === Theme Toggle Button === */
 #theme-toggle {
-    background: none;
+    background: transparent;
     border: none;
     color: var(--text-color);
     cursor: pointer;
-    margin-left: 20px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -347,4 +383,97 @@ section {
 [data-theme='dark'] #theme-toggle .moon {
     opacity: 1;
     transform: rotate(0deg);
+}
+
+/* === Hamburger Menu Toggle === */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    z-index: 101; /* Above the header background */
+}
+
+.menu-toggle:hover {
+    color: var(--primary-color);
+}
+
+.menu-toggle svg {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-toggle .close-icon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.menu-toggle[aria-expanded="true"] .close-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+    .header {
+        padding: 0 5%;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .navbar.is-open {
+        transform: translateX(0);
+    }
+
+    .hero {
+        min-height: 80vh;
+        padding-top: var(--header-height);
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem; /* Adjusted for smaller screens */
+    }
+
+    .hero-content .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .navbar a {
+        margin-left: 0;
+        font-size: 1.5rem;
+    }
 }
