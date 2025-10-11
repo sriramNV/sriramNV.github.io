@@ -238,6 +238,75 @@ section {
 .project-card:hover .project-link::after {
     transform: translateX(4px);
 }
+
+/* === Blog Section === */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.blog-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    overflow: hidden; /* Ensures image corners are rounded */
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.blog-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Ensures image covers the area without distortion */
+}
+
+.blog-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allows content to fill available space */
+}
+
+.blog-category {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    align-self: flex-start; /* Aligns to the start of the flex container */
+}
+
+.blog-card h3 {
+    color: var(--heading-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-meta {
+    margin-top: auto; /* Pushes meta to the bottom */
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
 /* === Tech Stack Section === */
 .tech-list {
     display: flex;
@@ -274,6 +343,76 @@ section {
     max-width: 600px;
     text-align: center;
     margin: 0 auto 2rem auto;
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.email-copy-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 8px 8px 8px 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+#email-address {
+    font-family: monospace;
+    color: var(--secondary-color);
+    margin-right: 1rem;
+}
+
+#copy-email-button {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    position: relative;
+}
+
+#copy-email-button svg {
+    width: 16px;
+    height: 16px;
+}
+
+#copy-email-button:hover {
+    background-color: var(--surface-color);
+    color: var(--primary-color);
+}
+
+/* Tooltip for feedback */
+#copy-email-button::before {
+    content: attr(data-tooltip-text);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--heading-color);
+    color: var(--surface-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#copy-email-button:hover::before {
+    opacity: 1;
+    visibility: visible;
 }
 
 /* === Footer === */
@@ -326,6 +465,23 @@ section {
     opacity: 1;
     transform: translateY(0);
 }
+
+.card-anim {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.card-anim.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation delay for cards */
+.card-anim:nth-child(2) { transition-delay: 0.1s; }
+.card-anim:nth-child(3) { transition-delay: 0.2s; }
+/* Add more if you have more cards per row on larger screens */
+.card-anim:nth-child(4) { transition-delay: 0.3s; }
 
 .back-to-top {
     position: fixed;

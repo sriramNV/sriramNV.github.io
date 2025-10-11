@@ -46,6 +46,7 @@
             <nav class="navbar" id="navbar">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
+                <a href="#blog">Blog</a>
                 <a href="#contact">Contact</a>
             </nav>
             <div class="header-actions">
@@ -61,7 +62,7 @@
         </header>
 
         <main>
-            <section id="about" class="hero">
+            <section id="about" class="hero section-anim">
                 <div class="hero-content">
                     <h1>Full Stack &amp; Web3 Developer</h1>
                     <p class="subtitle">
@@ -71,10 +72,10 @@
                 </div>
             </section>
 
-            <section id="projects">
+            <section id="projects" class="section-anim">
                 <h2 class="section-title">My Projects</h2>
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <div class="project-card card-anim">
                         <picture>
                             <!-- Serve modern WebP images to compatible browsers -->
                             <source
@@ -93,12 +94,12 @@
                         <p>A decentralized finance (DeFi) platform that allows users to stake and earn rewards. Built with React, Solidity, and ethers.js.</p>
                         <a href="#" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Project Alpha">View Project</a>
                     </div>
-                    <div class="project-card">
+                    <div class="project-card card-anim">
                         <h3>Project Beta</h3>
                         <p>A full-stack e-commerce website with a custom CMS for managing products, orders, and customers. Developed using Node.js, Express, and MongoDB.</p>
                         <a href="#" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Project Beta">View Project</a>
                     </div>
-                     <div class="project-card">
+                     <div class="project-card card-anim">
                         <h3>Project Gamma</h3>
                         <p>A real-time chat application using WebSockets, allowing for instant communication and group chats. The tech stack includes Vue.js and Socket.IO.</p>
                         <a href="#" class="project-link" target="_blank" rel="noopener noreferrer" aria-label="View Project Gamma">View Project</a>
@@ -106,7 +107,37 @@
                 </div>
             </section>
 
-            <section id="tech-stack">
+            <section id="blog" class="section-anim">
+                <h2 class="section-title">My Thoughts & Articles</h2>
+                <div class="blog-grid">
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="blog-card card-anim">
+                        <img src="./images/blog-post-1.jpg" alt="Abstract background for blog post 1" class="blog-image" loading="lazy" width="400" height="225">
+                        <div class="blog-content">
+                            <span class="blog-category">Web3</span>
+                            <h3>Understanding the Core Concepts of Decentralized Finance (DeFi)</h3>
+                            <p>A deep dive into the fundamental building blocks of DeFi, from automated market makers to yield farming...</p>
+                            <div class="blog-meta">
+                                <span>Read More →</span>
+                                <time datetime="2024-07-15">July 15, 2024</time>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="blog-card card-anim">
+                        <img src="./images/blog-post-2.jpg" alt="Abstract background for blog post 2" class="blog-image" loading="lazy" width="400" height="225">
+                        <div class="blog-content">
+                            <span class="blog-category">Full Stack</span>
+                            <h3>Modern State Management in React: Beyond Redux</h3>
+                            <p>Exploring modern alternatives for state management in React applications, including Zustand and Jotai...</p>
+                            <div class="blog-meta">
+                                <span>Read More →</span>
+                                <time datetime="2024-06-28">June 28, 2024</time>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section id="tech-stack" class="section-anim">
                 <h2 class="section-title">Technologies I Use</h2>
                 <ul class="tech-list">
                     <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" target="_blank" rel="noopener noreferrer">HTML5</a></li>
@@ -124,10 +155,18 @@
                 </ul>
             </section>
 
-            <section id="contact">
+            <section id="contact" class="section-anim">
                 <h2 class="section-title">Get In Touch</h2>
-                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out for a consultation!</p>
-                <a href="mailto:sriram.n-v@outlook.com" class="cta-button">Say Hello</a>
+                <p>I'm always open to discussing new projects or partnership opportunities. Feel free to reach out directly or copy my email address below.</p>
+                <div class="contact-actions">
+                    <a href="mailto:sriram.n-v@outlook.com" class="cta-button">Say Hello</a>
+                    <div class="email-copy-container">
+                        <span id="email-address">sriram.n-v@outlook.com</span>
+                        <button id="copy-email-button" aria-label="Copy email to clipboard" data-tooltip-text="Copy to clipboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 013.75 3.75v.375h-1.5V5.25a2.25 2.25 0 00-2.25-2.25h-.375A.375.375 0 007.5 3.375zM9 6.75A2.25 2.25 0 006.75 9v10.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018.75 19.5V9A2.25 2.25 0 0016.5 6.75H9z"></path></svg>
+                        </button>
+                    </div>
+                </div>
             </section>
         </main>
 
